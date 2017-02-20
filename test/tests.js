@@ -105,7 +105,10 @@ exports.testFailingMatcher = function (t) {
     try {
         impl.a(43);
     } catch (err) {
-        t.equal('Failed to assert that 43 matched the next expected event data "42" (remainingSteps = 1)', err.message);
+        t.equal(
+            'Failed to assert that "43" matched the next expected event data "42" (remainingSteps = 1)',
+            err.message
+        );
         t.done();
     }
 };
@@ -138,4 +141,17 @@ exports.testScriptedError = function (t) {
         t.equal('oh no', err.message);
         t.done();
     }
+};
+
+exports.testComplexEqualsMatcher = function (t) {
+    const mock = storymock().event('a', storymock.equalsMatcher);
+
+    const impl = mock.configure({
+        a: val => mock.outcomeOf('a', val)
+    });
+
+    impl.expect('a', [12, [34, new Buffer('wow')]]);
+
+    impl.a([12, [34, new Buffer('wow')]]);
+    t.done();
 };
