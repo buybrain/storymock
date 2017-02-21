@@ -106,7 +106,7 @@ exports.testFailingMatcher = function (t) {
         impl.a(43);
     } catch (err) {
         t.equal(
-            'Failed to assert that "43" matched the next expected event data "42" (remainingSteps = 1)',
+            'Failed to assert that 43 matched the next expected event data 42 (remainingSteps = 1)',
             err.message
         );
         t.done();

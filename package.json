@@ -1,6 +1,6 @@
 {
     "name": "storymock",
-    "version": "0.0.2",
+    "version": "0.0.3",
     "main": "./lib/storymock.js",
     "description": "Create scriptable mock objects easily",
     "author": "Ede Meijer <ede@buybrain.io>",
